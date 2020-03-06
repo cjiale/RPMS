@@ -72,7 +72,7 @@
   }
 
   #poster {
-    background:url("../assets/eva.png") no-repeat;
+    background:url("../assets/eva.jpg") no-repeat;
     background-position: center;
     height: 100%;
     width: 100%;
