@@ -29,7 +29,7 @@ public class ProjectService {
         projectDAO.deleteById(id);
     }
 
-    public List<Project> ListByCategory(int cid){
+    public List<Project> listByCategory(int cid){
         Category category = categoryService.get(cid);
         Sort sort = new Sort(Sort.Direction.DESC,"id");
         return projectDAO.findAllByCategory(category);

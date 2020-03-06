@@ -1,9 +1,9 @@
 <template>
   <div>
     <el-row style="height: 840px;">
-      <!--<search-bar></search-bar>-->
+      <search-bar @onSearch = "searchResult" ref= "searchBar"></search-bar>
       <el-tooltip effect="dark" placement="right"
-                  v-for="item in books"
+                  v-for="item in projects.slice((currentPage-1)*pagesize,currentPage*pagesize)"
                   :key="item.id">
         <p slot="content" style="font-size: 14px;margin-bottom: 6px;">{{item.title}}</p>
         <p slot="content" style="font-size: 13px;margin-bottom: 6px">
@@ -15,45 +15,103 @@
         <p slot="content" style="width: 300px" class="abstract">{{item.abs}}</p>
         <el-card style="width: 135px;margin-bottom: 20px;height: 233px;float: left;margin-right: 15px" class="book"
                  bodyStyle="padding:10px" shadow="hover">
-          <div class="cover">
+          <div class="cover" @click="editProject(item)">
             <img :src="item.cover" alt="封面">
           </div>
           <div class="info">
             <div class="title">
               <a href="">{{item.title}}</a>
             </div>
+            <i class="el-icon-delete" @click="deleteProject(item.id)"></i>
           </div>
-          <div class="author">{{item.author}}</div>
-          <div class="money">{{item.money}}</div>
         </el-card>
       </el-tooltip>
+      <edit-form @onSubmit="loadProjects()" ref="edit"></edit-form>
     </el-row>
     <el-row>
       <el-pagination
-        :current-page="1"
-        :page-size="10"
-        :total="20">
+        @current-change="handleCurrentChange"
+        :current-page="currentPage"
+        :page-size="pagesize"
+        :total="projects.length">
       </el-pagination>
     </el-row>
   </div>
 </template>
 
 <script>
+  import EditForm from './EditForm'
+  import SearchBar from './SearchBar'
   export default {
     name: 'Projects',
+    components:{EditForm,SearchBar},
     data () {
       return {
-        books: [
-          {
-            cover: 'https://i.loli.net/2020/03/05/TeNqLxzsIFXRPYy.jpg',
-            title: '科研项目管理系统',
-            author: '张三',
-            date: '2020-03-05',
-            press: '杭电信工',
-            abs: '这是一个我设计的科研项目管理系统',
-            money: '1万元'
-          },
-        ]
+        projects: [],
+        currentPage:1,
+        pagesize:17       
+      }
+    },
+    mounted: function () {
+      this.loadProjects()
+    },
+    methods: {
+      loadProjects(){
+        var _this = this
+        this.$axios.get('/projects').then(resp => {
+          if(resp && resp.status === 200){
+            _this.projects= resp.data
+          }
+        })
+      },
+      handleCurrentChange:function (currentPage) {
+        this.currentPage = currentPage
+        console.log(this.currentPage)
+      },
+      searchResult(){
+        var _this = this
+        this.$axios.get('/search?keyword=' + this.$refs.SearchBar.keywords,{          
+        }).then(resp => {
+          if(resp && resp.states === 200){
+            _this.projects = resp.data
+          }
+        })
+      },
+      deleteProject(id){
+        this.$confirm('此操作将永久删除项目，是否继续？','提示',{
+          confirmButtonText:'确定',
+          cancelButtonText:'取消',
+          type:'warning'
+        }).then(() => {
+          this.$axios.post('/delete',{id:id}).then(resp =>{
+            if(resp && resp.status === 200){
+              this.loadProjects()
+            }
+          })         
+        }
+        ).catch(() =>{
+          this.$message({
+            type:'info',
+            message:'已取消删除'
+          })
+        })
+      },
+      editProject (item){
+        this.$refs.edit.dialogFormVisible = true
+        this.$refs.edit.form = {
+           id:item.id,
+           cover:item.cover,
+           title:item.title,
+           author:item.author,
+           date:item.date,
+           press:item.press,
+           abs:item.abs,
+           money:item.money,
+           category:{
+             id: item.category.id.toString(),
+             name:item.category.name
+           }
+        }
       }
     }
   }

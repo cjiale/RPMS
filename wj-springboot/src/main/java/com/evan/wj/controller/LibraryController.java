@@ -30,9 +30,9 @@ public class LibraryController {
     }
 
     @GetMapping("/api/categories/{cid}/projects")
-    public List<Project> ListByCategory(@PathVariable("cid") int cid) throws  Exception{
+    public List<Project> listByCategory(@PathVariable("cid") int cid) throws  Exception{
         if (0 != cid){
-            return projectService.ListByCategory(cid);
+            return projectService.listByCategory(cid);
         }else{
             return list();
         }
