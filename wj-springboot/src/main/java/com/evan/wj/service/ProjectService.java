@@ -34,4 +34,8 @@ public class ProjectService {
         Sort sort = new Sort(Sort.Direction.DESC,"id");
         return projectDAO.findAllByCategory(category);
     }
+
+    public List<Project> Search(String keywords){
+        return projectDAO.findAllByTitleLikeOrAuthorLike('%' + keywords +'%','%' +keywords + '%');
+    }
 }

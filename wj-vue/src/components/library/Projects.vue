@@ -70,9 +70,10 @@
       },
       searchResult(){
         var _this = this
-        this.$axios.get('/search?keyword=' + this.$refs.SearchBar.keywords,{          
-        }).then(resp => {
-          if(resp && resp.states === 200){
+        this.$axios
+          .get('/search?keywords=' + this.$refs.searchBar.keywords, {
+          }).then(resp => {
+          if(resp && resp.status === 200){
             _this.projects = resp.data
           }
         })

@@ -12,18 +12,22 @@
                 auto-complete="off" placeholder="密码"></el-input>
     </el-form-item>
     <el-form-item style="width: 100%">
-      <el-button type="primary" style="width: 100%;background: #505458;border: none" v-on:click="login">登录</el-button>
+      <el-button type="primary" style="width: 80%;background: #505458;border: none" v-on:click="login">登录</el-button>
+       <router-link to="register"><el-button type="primary" style="width: 40%;background: #505458;border: none">注册</el-button></router-link>
     </el-form-item>
   </el-form>
   </body>
 </template>
-
-
 <script>
   export default {
     name: 'Login',
     data () {
       return {
+         rules: {
+          username: [{required: true, message: '用户名不能为空', trigger: 'blur'}],
+          password: [{required: true, message: '密码不能为空', trigger: 'blur'}]
+        },
+        checked: true,
         loginForm: {
           username: 'admin',
           password: '123'

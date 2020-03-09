@@ -4,6 +4,7 @@ import Router from 'vue-router'
 // 导入刚才编写的组件
 import AppIndex from '../components/home/AppIndex'
 import Login from '../components/Login'
+import Register from '../components/Register'
 import Home from '../components/Home'
 import LibraryIndex from '../components/library/LibraryIndex'
 
@@ -41,6 +42,11 @@ export default new Router({
       path: '/login',
       name: 'Login',
       component: Login  
+    },
+    {
+      path: '/register',
+      name: 'Register',
+      component: Register
     }
   ]
 })

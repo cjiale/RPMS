@@ -20,9 +20,9 @@
      listByCategory(){
        var _this = this
        var cid = this.$refs.sideMenu.cid
-       var url = '/categories' + cid + '/projects'
+       var url = 'categories/' + cid + '/projects'
        this.$axios.get(url).then(resp =>{
-         if(resp && resp.status ===200){
+         if(resp && resp.status === 200){
            _this.$refs.projectsArea.projects = resp.data
          }
        })
