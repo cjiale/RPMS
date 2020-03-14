@@ -23,7 +23,7 @@
         navList: [
           {name: '/index', navItem: '首页'},
           {name: '/plan', navItem: '规划计划'},
-          {name: '/library', navItem: '项目库'},
+          {name: '/library', navItem: '重大专项'},
           {name: '/admin', navItem: '个人中心'}
         ]
       }

@@ -20,9 +20,9 @@
           </div>
           <div class="info">
             <div class="title">
-              <a href="">{{item.title}}</a>
-            </div>
-            <i class="el-icon-delete" @click="deleteProject(item.id)"></i>
+              <a href="">{{item.title}}</a>          
+            </div> 
+             <i class="el-icon-delete" @click="deleteProject(item.id)"></i>        
           </div>
         </el-card>
       </el-tooltip>

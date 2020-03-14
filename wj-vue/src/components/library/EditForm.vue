@@ -7,31 +7,32 @@
       @close="clear">
       <el-form v-model="form" style="text-align: left" ref="dataForm">
         <el-form-item label="项目名" :label-width="formLabelWidth" prop="title">
-          <el-input v-model="form.title" autocomplete="off" placeholder="不加《》"></el-input>
+          <el-input v-model="form.title" autocomplete="off" placeholder="请输入项目名"></el-input>
         </el-form-item>
         <el-form-item label="申请人" :label-width="formLabelWidth" prop="author">
-          <el-input v-model="form.author" autocomplete="off"></el-input>
+          <el-input v-model="form.author" autocomplete="off" placeholder="请输入申请人"></el-input>
         </el-form-item>
         <el-form-item label="申请日期" :label-width="formLabelWidth" prop="date">
-          <el-input v-model="form.date" autocomplete="off"></el-input>
+          <el-input v-model="form.date" autocomplete="off" placeholder="请输入申请日期"></el-input>
         </el-form-item>
         <el-form-item label="申请单位" :label-width="formLabelWidth" prop="press">
-          <el-input v-model="form.press" autocomplete="off"></el-input>
+          <el-input v-model="form.press" autocomplete="off" placeholder="请输入申请单位"></el-input>
         </el-form-item>
         <el-form-item label="申请资金" :label-width="formLabelWidth" prop="money">
-          <el-input v-model="form.money" autocomplete="off"></el-input>
+          <el-input v-model="form.money" autocomplete="off" placeholder="请输入申请资金"></el-input>
         </el-form-item>
         <el-form-item label="封面" :label-width="formLabelWidth" prop="cover">
           <el-input v-model="form.cover" autocomplete="off" placeholder="图片 URL"></el-input>
           <img-upload @onUpload="uploadImg" ref="imgUpload"></img-upload>
         </el-form-item>
         <el-form-item label="简介" :label-width="formLabelWidth" prop="abs">
-          <el-input type="textarea" v-model="form.abs" autocomplete="off"></el-input>
+          <el-input type="textarea" v-model="form.abs" autocomplete="off" placeholder="请输入项目简介"></el-input>
         </el-form-item>
         <el-form-item label="分类" :label-width="formLabelWidth" prop="cid">
           <el-select v-model="form.category.id" placeholder="请选择分类">
-            <el-option label="预先研究" value="1"></el-option>
-            <el-option label="重大专项" value="2"></el-option>
+            <el-option label="综合研究" value="1"></el-option>
+            <el-option label="实践研究" value="2"></el-option>
+            <el-option label="理论研究" value="3"></el-option>       
           </el-select>
         </el-form-item>
         <el-form-item prop="id" style="height: 0">

@@ -10,11 +10,15 @@
     </el-menu-item>
     <el-menu-item index="1">
       <i class="el-icon-menu"></i>
-      <span slot="title">预先研究</span>
+      <span slot="title">综合研究</span>
     </el-menu-item>
     <el-menu-item index="2">
       <i class="el-icon-menu"></i>
-      <span slot="title">重大专项</span>
+      <span slot="title">实践研究</span>
+    </el-menu-item>
+    <el-menu-item index="3">
+      <i class="el-icon-menu"></i>
+      <span slot="title">理论研究</span>
     </el-menu-item>
   </el-menu>
 </template>
